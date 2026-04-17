@@ -1,0 +1,20 @@
+class Solution:
+    def topoSort(self, V, edges):
+        # Code here
+        adj=[[] for i in range(V)]
+        for u,v in edges:
+            adj[u].append(v)
+        vis=[False]*V
+        st=[]
+        def dfs(node):
+            vis[node]=True
+            for nei in adj[node]:
+                if not vis[nei]:
+                    dfs(nei)
+            st.append(node)
+        for i in range(V):
+            if not vis[i]:
+                dfs(i)
+        return st[::-1]
+               
+        
